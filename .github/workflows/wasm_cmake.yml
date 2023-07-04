@@ -27,14 +27,11 @@ jobs:
         cd ..
     
     - name: Building hello_world using cmake
-      id: cmake_build
-      uses: ./.github/actions/cmake-build
+      uses: threeal/cmake-action@v1.2.0
       with:
-        target: hello_world
-        build-type: Release
-        build-dir: ${{github.workspace}}/build
-        configure-args: -DCMAKE_TOOLCHAIN_FILE=./emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
-        
+        run-build: true
+        args: -DCMAKE_TOOLCHAIN_FILE=./emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+
     - name: Checking build
       run: |
         ls -la
