@@ -23,8 +23,11 @@ jobs:
       run: |
         cd emsdk
         ./emsdk install latest
+        ls -la
         ./emsdk activate latest
+        ls -la
         source ./emsdk_env.sh
+        ls -la
         cd ..
         
     - name: Checking installation #1
