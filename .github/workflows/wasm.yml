@@ -11,13 +11,13 @@ jobs:
     
     - name: Checkout repository
       uses: actions/checkout@v3
-      
+    
     - name: Clone emscripten
-      uses: actions/checkout@v3
+      uses: GuillaumeFalourd/clone-github-repo-action@v3
       with:
-        path: emsdk
-        submodules: false
-        ref: https://github.com/emscripten-core/emsdk
+        depth: 1
+        owner: 'emscripten-core'
+        repository: 'emsdk'
         
     - name: Installing emsdk
       run: |
