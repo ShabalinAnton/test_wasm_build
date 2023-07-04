@@ -1,0 +1,39 @@
+name: Build WASM module
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Clone emscripten
+      uses: actions/checkout@v3
+      with:
+        path: emsdk
+        submodules: false
+        ref: https://github.com/emscripten-core/emsdk
+        
+    - name: Installing emsdk
+      run: |
+        cd emsdk
+        ./emsdk install latest
+        ./emsdk activate latest
+        source ./emsdk_env.sh
+        cd ..
+        
+    - name: Building hello_world
+      run: emcc hello_world.cpp -o hello_world.js
+      
+    - name: Upload build
+      uses: actions/upload-artifact@v3
+      with:
+        path: |
+          hello_world.js
+          hello_world.wasm
+          
