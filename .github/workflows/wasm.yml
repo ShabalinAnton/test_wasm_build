@@ -33,14 +33,14 @@ jobs:
     - name: Checking installation #1
       run: ls -la
       
-    - name: Checking installation #2
-      run: whereis emcc
+    #- name: Checking installation #2
+      #run: whereis emcc
       
-    - name: Checking installation #3
-      run: emcc --version
+    #- name: Checking installation #3
+      #run: emcc --version
         
     - name: Building hello_world
-      run: emcc hello_world.cpp -o hello_world.js
+      run: ./emsdk/upstream/emscripten/emcc hello_world.cpp -o hello_world.js
       
     - name: Upload build
       uses: actions/upload-artifact@v3
