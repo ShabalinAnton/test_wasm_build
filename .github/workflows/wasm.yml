@@ -15,7 +15,6 @@ jobs:
     - name: Clone emscripten
       uses: GuillaumeFalourd/clone-github-repo-action@v3
       with:
-        depth: 1
         owner: 'emscripten-core'
         repository: 'emsdk'
         
@@ -23,22 +22,10 @@ jobs:
       run: |
         cd emsdk
         ./emsdk install latest
-        ls -la
         ./emsdk activate latest
-        ls -la
         source ./emsdk_env.sh
-        ls -la
         cd ..
-        
-    - name: Checking installation #1
-      run: ls -la
-      
-    #- name: Checking installation #2
-      #run: whereis emcc
-      
-    #- name: Checking installation #3
-      #run: emcc --version
-        
+                
     - name: Building hello_world
       run: ./emsdk/upstream/emscripten/emcc hello_world.cpp -o hello_world.js
       
