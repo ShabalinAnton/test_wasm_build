@@ -27,6 +27,12 @@ jobs:
         source ./emsdk_env.sh
         cd ..
         
+    - name: Checking installation
+      run: |
+        ls -la
+        whereis emcc
+        emcc --version
+        
     - name: Building hello_world
       run: emcc hello_world.cpp -o hello_world.js
       
